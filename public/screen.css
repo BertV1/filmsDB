@@ -1,0 +1,23 @@
+#input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#input div {
+    padding: 2% 2% 2% 2%;
+    background-color: aqua;
+    max-width: 20%;
+}
+
+#input div > p {
+    /* max-width: 20%; */
+}
+
+body {
+    width: 100%;
+}
+
+/* #input div > img {
+
+} */
