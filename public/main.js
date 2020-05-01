@@ -1,7 +1,7 @@
 let baseURL = 'https://api.themoviedb.org/3/';
 let configData = null;
 let baseImageURL = null;
-const APIKEY = "4400a235d3d6337457ae97f843d8a5bb";
+
 
 
 
@@ -13,7 +13,7 @@ const APIKEY = "4400a235d3d6337457ae97f843d8a5bb";
 
 function init() {
     console.log("loaded");
-    getConfig();
+    //getConfig();
     //traverseFilmList();
     traverseFilmListUPDATED();
     //findFilm();
@@ -78,9 +78,15 @@ function filmDataIntoHTML(data){
 }
 
 function filmDataIntoHTMLUPDATED(data){
+    releasDate = data.release_date.split("-");
+    if(releasDate[0] == ""){
+        releasDate[0] = "n.a.";
+    }
+    //console.log(releasDate[0]);
+    
     let baseImg = "https://image.tmdb.org/t/p/";
-    let imgSizes = ["w92","w154","w185","w342","w500","w780","original"];
-    titleANDyear = "<div><h2>"+ data.title +" <span>" + data.release_date + "</span></h2>< /br><h3>" + data.original_title + "</h3>";
+    let imgSizes = ["w92","w154","w185","w370_and_h556_bestv2","w342","w500","w780","original"];
+    titleANDyear = "<div><h2>"+ data.original_title +" (" + releasDate[0] + ")" +"</h2><h3>" + data.title + "</h3>";
     img = "<img src=\"" + baseImg + imgSizes[3] + data.poster_path +"\""+  "alt=\"" +  data.title + "\"/>";
     plot = "<p>" + data.overview + "</p></div>";
     filmFormatted = titleANDyear+img+plot;
