@@ -1,9 +1,13 @@
 /*HEADER, titles*/
 
 header {
-    background-image: url("../public/siteBanner.jpg");
+    background-image: url("siteBanner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
     /* background-color: transparent; */
-    height: 10%;
+    margin-left: 0%;
+    margin-right: 0%;
 }
 
 h1 {
@@ -37,6 +41,8 @@ h3 {
     flex-direction: row;
     flex-wrap: wrap;
     /* background-color: aqua; */
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 #input div {
@@ -50,12 +56,12 @@ h3 {
 #input div h2 {
     margin-top: 1%;
     min-height: 10%;
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 #input div h3{
     min-height: 10%;
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
 }
 
 #input div img {
@@ -79,15 +85,13 @@ h3 {
 p {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
-    font-style: italic;
+    /* font-style: italic; */
     font-weight: normal;
     color: black;
-    text-align: right;
+    text-align: justify;
 }
 
 body {
     /* width: 100%; */
-    margin-left: 10%;
-    margin-right: 10%;
     background-color: lavenderblush;
 }
