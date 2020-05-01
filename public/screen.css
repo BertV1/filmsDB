@@ -20,7 +20,6 @@ h2{
     font-size: 2em;
     color: darkgray;
     text-align: left;
-    padding-bottom: .5%;
     display: inline;
 
 
@@ -49,18 +48,24 @@ h3 {
 }
 
 #input div h2 {
-    min-height: 15%;
+    margin-top: 1%;
+    min-height: 10%;
     background-color: blue;
 }
 
+#input div h3{
+    min-height: 10%;
+    background-color: lightgreen;
+}
 
 #input div img {
     max-height: 55%;
+    max-width: 85%;
 }
 
 #input div p {
     max-height: 30%;
-    padding-top: 2%;
+    margin-top:5%;
 }
 
 #input div:nth-child(odd) {
