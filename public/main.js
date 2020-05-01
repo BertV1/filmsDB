@@ -89,17 +89,18 @@ function filmDataIntoHTMLUPDATED(data){
     
     let baseImg = "https://image.tmdb.org/t/p/";
     let imgSizes = ["w92","w154","w185","w370_and_h556_bestv2","w342","w500","w780","original"];
-    titleANDyear = "<div id=\"film"+ filmCtr + "\"><h2>"+ data.original_title +" (" + releasDate[0] + ")" +"</h2><h3>" + data.title + "</h3>";
+    titleANDyear = "<div class=\"to_shadow\" id=\"film"+ filmCtr + "\"><h2>"+ data.original_title +" (" + releasDate[0] + ")" +"</h2><h3>" + data.title + "</h3>";
     img = "<img src=\"" + baseImg + imgSizes[3] + data.poster_path +"\""+  "alt=\"" +  data.title + "\"/>";
     plot = "<p>" + data.overview + "</p></div>";
     filmFormatted = titleANDyear+img+plot;
     document.getElementById('input').innerHTML+=filmFormatted; 
-    // addStyling(data.RGB_avg);
+    addStyling(data.RGB_avg);
     filmCtr += 1;
 }
 
 function addStyling(rgbValues){
     document.getElementById("film"+filmCtr).style.backgroundColor = "rgb("+rgbValues[0]+","+rgbValues[1]+","+rgbValues[2]+")";
+    //document.getElementById("film"+filmCtr).style.boxShadow = "inset 0 0 10px 10px white";
 }
 
 
