@@ -2,8 +2,9 @@
 
 header {
     background-image: url("siteBanner.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: repeat;
+    background-size: 100vh, 100vw;
+    height: 20%;
     
     /* background-color: transparent; */
     margin-left: 0%;
@@ -51,6 +52,21 @@ h3 {
     max-height: 20%;
     display: flex;
     flex-direction: column;
+    /* border-radius: 3%; */
+    background-image: linear-gradient(
+        to right,
+        white,
+        yellow 10%,
+        white,
+        to left,
+        white,
+        yellow 10%,
+        white
+        /* to left,
+        white,
+        yellow */
+    );
+    
 }
 
 #input div h2 {
@@ -75,7 +91,7 @@ h3 {
 }
 
 #input div:nth-child(odd) {
-    background-color: red;
+    /* background-color: red; */
 }
 
 
@@ -94,4 +110,9 @@ p {
 body {
     /* width: 100%; */
     background-color: lavenderblush;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
 }

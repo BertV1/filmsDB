@@ -77,7 +77,10 @@ function filmDataIntoHTML(data){
     document.getElementById('input').innerHTML+=filmFormatted; 
 }
 
+let filmCtr = 0;
+
 function filmDataIntoHTMLUPDATED(data){
+    console.log(data.RGB_avg);
     releasDate = data.release_date.split("-");
     if(releasDate[0] == ""){
         releasDate[0] = "n.a.";
@@ -86,11 +89,17 @@ function filmDataIntoHTMLUPDATED(data){
     
     let baseImg = "https://image.tmdb.org/t/p/";
     let imgSizes = ["w92","w154","w185","w370_and_h556_bestv2","w342","w500","w780","original"];
-    titleANDyear = "<div><h2>"+ data.original_title +" (" + releasDate[0] + ")" +"</h2><h3>" + data.title + "</h3>";
+    titleANDyear = "<div id=\"film"+ filmCtr + "\"><h2>"+ data.original_title +" (" + releasDate[0] + ")" +"</h2><h3>" + data.title + "</h3>";
     img = "<img src=\"" + baseImg + imgSizes[3] + data.poster_path +"\""+  "alt=\"" +  data.title + "\"/>";
     plot = "<p>" + data.overview + "</p></div>";
     filmFormatted = titleANDyear+img+plot;
     document.getElementById('input').innerHTML+=filmFormatted; 
+    // addStyling(data.RGB_avg);
+    filmCtr += 1;
+}
+
+function addStyling(rgbValues){
+    document.getElementById("film"+filmCtr).style.backgroundColor = "rgb("+rgbValues[0]+","+rgbValues[1]+","+rgbValues[2]+")";
 }
 
 
