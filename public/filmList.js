@@ -1399,7 +1399,7 @@ var FilmList = {
 			"language": "Danish"
 		},
 		{
-			"title": "Unter Sandet",
+			"title": "Under Sandet",
 			"translatedTitle": "Land Of Mine",
 			"year": "2015",
 			"language": "Danish"
