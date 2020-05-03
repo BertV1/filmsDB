@@ -21,7 +21,7 @@ function init() {
 }
 function traverseFilmList() {
     for (let i = 0; i < FilmList.Films.length; i++) {
-        findFilm(FilmList.Films[i].title, FilmList.Films[i].year);
+        findFilm(FilmList.Films[i].title, FilmList.Films[i].year, FilmList.Films[i].language, FilmList.Films[i].translatedTitle);
         
     }
 }
@@ -39,11 +39,11 @@ let countOK = 0;
 let countNOTOK = 0;
 // temp vars so we can copy it manually to file later
 let myJSONfilmdata = {};
-let jsonCounter = 197;
+let jsonCounter = 210;
 let = amountOfFetchableNewFilms = 0;
 
 
-function findFilm(filmTitle, filmReleaseYear) {
+function findFilm(filmTitle, filmReleaseYear, filmLanguage, filmTranslatedTitle) {
     let fetchUrl = "".concat(baseURL, 'search/movie?api_key=', APIKEY, '&query=', encodeURI(filmTitle), '&year=', parseInt(filmReleaseYear));
     fetch(fetchUrl)
         .then((fetchResult) => {
@@ -52,59 +52,54 @@ function findFilm(filmTitle, filmReleaseYear) {
         .then((fetchData) => {
 
 
-            if (fetchData.results === undefined || fetchData.results.length == 0) {
+            if (fetchData.results.length > 1) {
 
                 console.log("ORIGINAL -- "+filmTitle);
-                console.log(fetchData.results);
-
+                console.log("YEAR -- "+ filmReleaseYear);
+                console.log("LANGUAGE -- "+ filmLanguage);
+                console.log("TRANSLATED -- "+ filmTranslatedTitle);
+                
+                
+                
                 // fetchData.results.length > 1 || 
-                console.log("FETCH NOT OK");
                 //console.log(fetchUrl);
                 //console.log(filmReleaseYear);
                 //console.log(fetchData);
-                //countNOTOK += 1;
-                //console.log("COUNT = "+countNOTOK);
-                for (let i = 0; i < FilmList.Films.length; i++) {
-                    
-                    if (FilmList.Films[i].title == filmTitle) {
-                        //console.log(FilmList.Films[i].title);
-                        
-                        findFilm(FilmList.Films[i].translatedTitle, filmReleaseYear);
-
+                countOK += 1;
+                console.log("COUNT = "+countOK);
+                if (fetchData.results.length <= 10){
+                    for (let i = 0; i < fetchData.results.length; i++){
+                        myJSONfilmdata[jsonCounter] = fetchData.results[i];
+                        jsonCounter += 1;
                     }
                 }
+                console.log(JSON.stringify(myJSONfilmdata));
+                
+                // for (let i = 0; i < FilmList.Films.length; i++) {
+                //     if (FilmList.Films[i].title == filmTitle) {
+                //         findFilm(FilmList.Films[i].translatedTitle, filmReleaseYear);
+                //     }
+                // }
 
 
             } else { // DONE successfully fetched films in file and being displayed
                 // myJSONfilmdata[jsonCounter] = fetchData.results[0];
                 // jsonCounter += 1;
                 // console.log(JSON.stringify(myJSONfilmdata));
-                if (fetchData.results.length == 1) {
-                    
-                    console.log("FILMS REAL DOES HAVE LENGTH, DOES IT NOT????????? ==> "+FilmsReal.length);
-                    
-
+                if (fetchData.results.length == 1123132) {
                     let match = false;
                     for (let i = 0; i < Object.keys(FilmsReal).length; i++) {
-                        
-                        
                         if (FilmsReal[i].translatedTitle == fetchData.results[0].title || FilmsReal[i].title == fetchData.results[0].title) {
                             match = true;
-                            console.log("film already in filmdata list");
                             break;
-                            
                         }
                     }
-                    
                     if (!match) {
                         myJSONfilmdata[jsonCounter] = fetchData.results[0];
                         jsonCounter += 1;
-                        amountOfFetchableNewFilms += 1;
-                        console.log("a new film; amount of fetchable new films: "+ amountOfFetchableNewFilms);
-                        
+                        amountOfFetchableNewFilms += 1; 
                     }
                     console.log(JSON.stringify(myJSONfilmdata));
-
                 }
             }
         })
